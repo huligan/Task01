@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A29BBCB15F0AFC900226F7E /* bakteria1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A29BBCA15F0AFC900226F7E /* bakteria1.png */; };
+		7A9B966315EF955700D79654 /* RSSLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9B966215EF955700D79654 /* RSSLoader.m */; };
+		7A9B966715EF97A100D79654 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9B966615EF97A100D79654 /* GDataXMLNode.m */; };
+		7A9B966915EF985100D79654 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9B966815EF985100D79654 /* libxml2.dylib */; };
+		7A9B966D15EFAC6900D79654 /* DetailNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A9B966B15EFAC6900D79654 /* DetailNews.m */; };
+		7A9B966E15EFAC6900D79654 /* DetailNews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A9B966C15EFAC6900D79654 /* DetailNews.xib */; };
 		7ADF5F6D15EE948500C392F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF5F6C15EE948500C392F4 /* UIKit.framework */; };
 		7ADF5F6F15EE948500C392F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF5F6E15EE948500C392F4 /* Foundation.framework */; };
 		7ADF5F7115EE948500C392F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF5F7015EE948500C392F4 /* CoreGraphics.framework */; };
@@ -15,9 +21,23 @@
 		7ADF5F7D15EE948500C392F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF5F7C15EE948500C392F4 /* AppDelegate.m */; };
 		7ADF5F8015EE948500C392F4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF5F7F15EE948500C392F4 /* ViewController.m */; };
 		7ADF5F8315EE948500C392F4 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF5F8115EE948500C392F4 /* ViewController.xib */; };
+		7ADF5F9015EE975800C392F4 /* CategoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF5F8E15EE975800C392F4 /* CategoryTableView.m */; };
+		7ADF5F9115EE975800C392F4 /* CategoryTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF5F8F15EE975800C392F4 /* CategoryTableView.xib */; };
+		7ADF5F9A15EEA2A100C392F4 /* RSSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF5F9815EEA2A100C392F4 /* RSSTableView.m */; };
+		7ADF5F9B15EEA2A100C392F4 /* RSSTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF5F9915EEA2A100C392F4 /* RSSTableView.xib */; };
+		7ADF5F9D15EEA68100C392F4 /* Category.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7ADF5F9C15EEA68100C392F4 /* Category.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A29BBCA15F0AFC900226F7E /* bakteria1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bakteria1.png; path = Task01/bakteria1.png; sourceTree = "<group>"; };
+		7A9B966115EF955700D79654 /* RSSLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSLoader.h; sourceTree = "<group>"; };
+		7A9B966215EF955700D79654 /* RSSLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSLoader.m; sourceTree = "<group>"; };
+		7A9B966515EF97A100D79654 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		7A9B966615EF97A100D79654 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		7A9B966815EF985100D79654 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		7A9B966A15EFAC6900D79654 /* DetailNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailNews.h; sourceTree = "<group>"; };
+		7A9B966B15EFAC6900D79654 /* DetailNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailNews.m; sourceTree = "<group>"; };
+		7A9B966C15EFAC6900D79654 /* DetailNews.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailNews.xib; sourceTree = "<group>"; };
 		7ADF5F6815EE948500C392F4 /* Task01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Task01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ADF5F6C15EE948500C392F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7ADF5F6E15EE948500C392F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -31,6 +51,13 @@
 		7ADF5F7E15EE948500C392F4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		7ADF5F7F15EE948500C392F4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7ADF5F8215EE948500C392F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		7ADF5F8D15EE975800C392F4 /* CategoryTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableView.h; sourceTree = "<group>"; };
+		7ADF5F8E15EE975800C392F4 /* CategoryTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableView.m; sourceTree = "<group>"; };
+		7ADF5F8F15EE975800C392F4 /* CategoryTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryTableView.xib; sourceTree = "<group>"; };
+		7ADF5F9715EEA2A100C392F4 /* RSSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSTableView.h; sourceTree = "<group>"; };
+		7ADF5F9815EEA2A100C392F4 /* RSSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSTableView.m; sourceTree = "<group>"; };
+		7ADF5F9915EEA2A100C392F4 /* RSSTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSSTableView.xib; sourceTree = "<group>"; };
+		7ADF5F9C15EEA68100C392F4 /* Category.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Category.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A9B966915EF985100D79654 /* libxml2.dylib in Frameworks */,
 				7ADF5F6D15EE948500C392F4 /* UIKit.framework in Frameworks */,
 				7ADF5F6F15EE948500C392F4 /* Foundation.framework in Frameworks */,
 				7ADF5F7115EE948500C392F4 /* CoreGraphics.framework in Frameworks */,
@@ -50,6 +78,7 @@
 		7ADF5F5D15EE948400C392F4 = {
 			isa = PBXGroup;
 			children = (
+				7A29BBCA15F0AFC900226F7E /* bakteria1.png */,
 				7ADF5F7215EE948500C392F4 /* Task01 */,
 				7ADF5F6B15EE948500C392F4 /* Frameworks */,
 				7ADF5F6915EE948500C392F4 /* Products */,
@@ -67,6 +96,7 @@
 		7ADF5F6B15EE948500C392F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A9B966815EF985100D79654 /* libxml2.dylib */,
 				7ADF5F6C15EE948500C392F4 /* UIKit.framework */,
 				7ADF5F6E15EE948500C392F4 /* Foundation.framework */,
 				7ADF5F7015EE948500C392F4 /* CoreGraphics.framework */,
@@ -82,6 +112,20 @@
 				7ADF5F7E15EE948500C392F4 /* ViewController.h */,
 				7ADF5F7F15EE948500C392F4 /* ViewController.m */,
 				7ADF5F8115EE948500C392F4 /* ViewController.xib */,
+				7ADF5F8D15EE975800C392F4 /* CategoryTableView.h */,
+				7ADF5F8E15EE975800C392F4 /* CategoryTableView.m */,
+				7ADF5F8F15EE975800C392F4 /* CategoryTableView.xib */,
+				7ADF5F9715EEA2A100C392F4 /* RSSTableView.h */,
+				7ADF5F9815EEA2A100C392F4 /* RSSTableView.m */,
+				7ADF5F9915EEA2A100C392F4 /* RSSTableView.xib */,
+				7A9B966A15EFAC6900D79654 /* DetailNews.h */,
+				7A9B966B15EFAC6900D79654 /* DetailNews.m */,
+				7A9B966C15EFAC6900D79654 /* DetailNews.xib */,
+				7A9B966115EF955700D79654 /* RSSLoader.h */,
+				7A9B966215EF955700D79654 /* RSSLoader.m */,
+				7A9B966515EF97A100D79654 /* GDataXMLNode.h */,
+				7A9B966615EF97A100D79654 /* GDataXMLNode.m */,
+				7ADF5F9C15EEA68100C392F4 /* Category.plist */,
 				7ADF5F7315EE948500C392F4 /* Supporting Files */,
 			);
 			path = Task01;
@@ -150,6 +194,11 @@
 			files = (
 				7ADF5F7715EE948500C392F4 /* InfoPlist.strings in Resources */,
 				7ADF5F8315EE948500C392F4 /* ViewController.xib in Resources */,
+				7ADF5F9115EE975800C392F4 /* CategoryTableView.xib in Resources */,
+				7ADF5F9B15EEA2A100C392F4 /* RSSTableView.xib in Resources */,
+				7ADF5F9D15EEA68100C392F4 /* Category.plist in Resources */,
+				7A9B966E15EFAC6900D79654 /* DetailNews.xib in Resources */,
+				7A29BBCB15F0AFC900226F7E /* bakteria1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +212,11 @@
 				7ADF5F7915EE948500C392F4 /* main.m in Sources */,
 				7ADF5F7D15EE948500C392F4 /* AppDelegate.m in Sources */,
 				7ADF5F8015EE948500C392F4 /* ViewController.m in Sources */,
+				7ADF5F9015EE975800C392F4 /* CategoryTableView.m in Sources */,
+				7ADF5F9A15EEA2A100C392F4 /* RSSTableView.m in Sources */,
+				7A9B966315EF955700D79654 /* RSSLoader.m in Sources */,
+				7A9B966715EF97A100D79654 /* GDataXMLNode.m in Sources */,
+				7A9B966D15EFAC6900D79654 /* DetailNews.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +261,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -224,8 +280,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -272,6 +330,7 @@
 				7ADF5F8815EE948500C392F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

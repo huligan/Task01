@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>World</key>
+	<string>http://feeds.bbci.co.uk/news/world/rss.xml</string>
+	<key>UK</key>
+	<string>http://feeds.bbci.co.uk/news/uk/rss.xml</string>
+	<key>Business</key>
+	<string>http://feeds.bbci.co.uk/news/business/rss.xml</string>
+	<key>Politics</key>
+	<string>http://feeds.bbci.co.uk/news/politics/rss.xml</string>
+	<key>Health</key>
+	<string>http://feeds.bbci.co.uk/news/health/rss.xml</string>
+	<key>Education &amp; Family</key>
+	<string>http://feeds.bbci.co.uk/news/education/rss.xml</string>
+	<key>Science &amp; Environment</key>
+	<string>http://feeds.bbci.co.uk/news/science_and_environment/rss.xml</string>
+	<key>Technology</key>
+	<string>http://feeds.bbci.co.uk/news/technology/rss.xml</string>
+	<key>Entertainment &amp; Arts</key>
+	<string>http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml</string>
+	<key>Special Reports</key>
+	<string>http://feeds.bbci.co.uk/news/special_reports/rss.xml</string>
+	<key>Have Your Say</key>
+	<string>http://feeds.bbci.co.uk/news/have_your_say/rss.xml</string>
+	<key>Editors Blog</key>
+	<string>http://www.bbc.co.uk/blogs/theeditors/rss.xml</string>
+</dict>
+</plist>
