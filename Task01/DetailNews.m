@@ -60,12 +60,11 @@
                                     lineBreakMode:UILineBreakModeWordWrap];
 
         [newsTitle setFrame: CGRectMake(20, 20, labelSize.width, labelSize.height)];
-        float lastY = 20.0f + labelSize.height;
+        //float lastY = 20.0f + labelSize.height;
         newsTitle.text = [data objectForKey:@"title"];
         
-        UIImage *image = [UIImage imageNamed:@"bakteria1.png"];
-        image.size
-        [img setImage:image];
+        //UIImage *image = [UIImage imageNamed:@"bakteria1.png"];
+        //[img setImage:image];
         description.text = [data objectForKey:@"description"];
     }
 }
