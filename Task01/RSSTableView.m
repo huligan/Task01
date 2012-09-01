@@ -12,18 +12,22 @@
 @interface RSSTableView ()
 {
     UIFont *cellFont;
+    //ActivityOverlayController *overlayController;
+    UIView *loadView;
 }
 
 @end
 
 @implementation RSSTableView
+@synthesize activityIndicator;
 
 @synthesize url;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self) 
+    {
         // Custom initialization
         url = nil;
     }
@@ -33,10 +37,20 @@
 -(id) initWithURL:(NSString*)_url
 {
     self = [super initWithNibName:@"RSSTableView" bundle:nil];
-    if (self) {
+    if (self) 
+    {
         // Custom initialization
         url = _url;
         [url retain];
+        
+        cellFont = [UIFont fontWithName:@"Helvetica-Bold" size:16.0f];
+        [cellFont retain];
+        //rssItems = nil;
+        //rss = nil;
+        
+        rss = [[RSSLoader alloc] init];
+        rss.delegate = self;
+        [rss load:url];
     }
     return self;
 }
@@ -50,24 +64,34 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    if (!rss.loaded)
+    {
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.frame = CGRectMake(0.0f, 0.0f, 40.0f, 40.0f);
+    activityIndicator.hidesWhenStopped = YES; // this is the default, but never hurts to be sure
+    activityIndicator.center = self.view.center;
+    //[self.view addSubview:activityIndicator];
     
-    cellFont = [UIFont fontWithName:@"Helvetica-Bold" size:16.0f];
-    [cellFont retain];
-    rssItems = nil;
-    rss = nil;
+    loadView = [[UIView alloc] init];
+    loadView.frame = self.view.frame;
+    [loadView setBackgroundColor:[UIColor colorWithRed:0.3f green:0.3f blue:0.3f alpha:0.6f]];
+    [loadView addSubview:activityIndicator];
+    [self.view addSubview:loadView];
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [activityIndicator startAnimating];
+    //if (rss == nil)
+    //{
+        //rss = [[RSSLoader alloc] init];
+       // rss.delegate = self;
+        //[rss load:url];
+    //}
     
-    if (rss == nil)
-    {
-        rss = [[RSSLoader alloc] init];
-        rss.delegate = self;
-        //NSString *path = @"http://feeds.feedburner.com/TheAppleBlog";
-        [rss load:url];
-    }
 }
 
 #pragma mark -
@@ -76,6 +100,20 @@
 {
     rssItems = [items retain];
     [self.tableView reloadData];
+    
+    if (rss.loaded)
+    {
+        [activityIndicator stopAnimating];
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            loadView.alpha = 0.0;
+        } completion:^(BOOL finished){
+            [loadView removeFromSuperview];
+        }];
+        
+        
+        //[loadView removeFromSuperview];
+    }
 }
 
 -(void)failedFeedUpdateWithError:(NSError *)error
@@ -93,9 +131,11 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    if (url)
-        [url release];
+    
+    [url release];
     [cellFont release];
+    [activityIndicator release];
+    [loadView release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -118,7 +158,7 @@
     // Return the number of rows in the section.
     if (rss.loaded == YES) 
     {
-        return [rssItems count];//*2;
+        return [rssItems count];
     } 
     else 
     {
@@ -148,10 +188,6 @@
         cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0f];
     }
     
-    //UIView *backView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-    //backView.backgroundColor = [UIColor clearColor];
-    //cell.backgroundView = backView;
-    
     NSDictionary* item = [rssItems objectAtIndex: indexPath.row];
     cell.textLabel.text = [item objectForKey:@"title"];
     
@@ -175,12 +211,12 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LoadingCellIdentifier] autorelease];
     }
     
-    cell.textLabel.text = @"Loading...";
+    cell.textLabel.text = @"";
     
-    UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [activity startAnimating];
-    [cell setAccessoryView: activity];
-    [activity release];
+    //UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    //[activity startAnimating];
+    //[cell setAccessoryView: activity];
+    //[activity release];
     
     return cell;
 }

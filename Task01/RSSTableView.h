@@ -10,16 +10,14 @@
 #import "RSSLoader.h"
 
 @interface RSSTableView : UITableViewController <RSSLoaderDelegate>
-{
-    //NSMutableData *rssData;
-    
-    UIActivityIndicatorView * activityIndicator; 
-    
+{    
     RSSLoader *rss;
     NSMutableArray *rssItems;
 }
 
 @property(retain, nonatomic) NSString *url;
+@property (nonatomic,retain) UIActivityIndicatorView *activityIndicator;
+//@property (nonatomic,retain) UIView *loadView;
 
 -(id) initWithURL:(NSString*)_url;
 
