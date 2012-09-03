@@ -17,7 +17,6 @@
 
 @property(retain, nonatomic) NSString *url;
 @property (nonatomic,retain) UIActivityIndicatorView *activityIndicator;
-//@property (nonatomic,retain) UIView *loadView;
 
 -(id) initWithURL:(NSString*)_url;
 

@@ -70,11 +70,25 @@
 {
     //NSLog(@"------------------------------");
     //NSLog(@"%@", [xmlItem XMLString]);
+    NSArray *img = [xmlItem elementsForName:@"media:thumbnail"];
+    
+    NSString *imgURL1, *imgURL2;
+    if (img.count >= 1)
+        imgURL1 = [[[img objectAtIndex:0] attributeForName:@"url"] stringValue];
+    else 
+        imgURL1 = @"";
+    if (img.count >= 2)
+        imgURL2 = [[[img objectAtIndex:1] attributeForName:@"url"] stringValue];
+    else 
+        imgURL2 = @"";
+    
     return [NSDictionary dictionaryWithObjectsAndKeys:
             [[[xmlItem elementsForName:@"title"] objectAtIndex:0] stringValue], @"title",
             [[[xmlItem elementsForName:@"link"] objectAtIndex:0] stringValue], @"link",
             [[[xmlItem elementsForName:@"description"] objectAtIndex:0] stringValue], @"description",
             [[[xmlItem elementsForName:@"pubDate"] objectAtIndex:0] stringValue], @"pubDate",
+            imgURL1, @"img1",
+            imgURL2, @"img2",
             nil];
 }
 

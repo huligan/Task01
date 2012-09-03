@@ -59,13 +59,28 @@
                                 constrainedToSize:constraintSize 
                                     lineBreakMode:UILineBreakModeWordWrap];
 
-        [newsTitle setFrame: CGRectMake(20, 20, labelSize.width, labelSize.height)];
-        //float lastY = 20.0f + labelSize.height;
+        [newsTitle setFrame: CGRectMake(10, 20, labelSize.width, labelSize.height)];
+        float lastY = 20.0f + labelSize.height;
         newsTitle.text = [data objectForKey:@"title"];
+        newsTitle.textAlignment = UITextAlignmentCenter;
         
-        //UIImage *image = [UIImage imageNamed:@"bakteria1.png"];
-        //[img setImage:image];
+        [img setFrame:CGRectMake(20.0f, lastY, 280.0f, 189.0f)];
+        lastY += 140.0f ;
+        
+        [description setFrame:CGRectMake(20.0f, lastY, 280.0f, 189.0f)];
         description.text = [data objectForKey:@"description"];
+        
+        // image
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSString *imgPath = [data objectForKey:@"img2"];
+            NSLog(@"%@", imgPath);
+            NSURL * imageURL = [NSURL URLWithString:imgPath];
+            NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [img setImage:[UIImage imageWithData:imageData]];
+            });
+        });
     }
 }
 

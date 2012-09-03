@@ -12,8 +12,9 @@
 @interface RSSTableView ()
 {
     UIFont *cellFont;
-    //ActivityOverlayController *overlayController;
     UIView *loadView;
+    NSMutableArray *images;
+    UIImage *defaultImage;
 }
 
 @end
@@ -60,6 +61,8 @@
         [loadView addSubview:activityIndicator];
         [self.view addSubview:loadView];
         
+        defaultImage = [UIImage imageNamed:@"noimage.png"];
+        
         [self.view setUserInteractionEnabled:false];
     }
     return self;
@@ -89,6 +92,31 @@
 {
     rssItems = [items retain];
     [self.tableView reloadData];
+    
+    [images release];
+    images = [[NSMutableArray alloc] initWithCapacity:images.count];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        for (NSDictionary *item in rssItems)
+        {
+            NSString *imgPath = [item objectForKey:@"img1"];
+            //NSLog(@"%@", imgPath);
+            NSURL * imageURL = [NSURL URLWithString:imgPath];
+            NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+            UIImage * img = [UIImage imageWithData:imageData];
+            if (img == nil)
+            {
+                [images addObject:defaultImage];
+            }
+            else
+                [images addObject:img];
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
+        
+    });
     
     if (rss.loaded)
     {
@@ -129,6 +157,8 @@
     [rss release];
     [rssItems release];
     [cellFont release];
+    [images release];
+    [defaultImage release];
     
     [super dealloc];
 }
@@ -184,9 +214,17 @@
     }
     
     NSDictionary* item = [rssItems objectAtIndex: indexPath.row];
+    
+    // image
+    if (indexPath.row < images.count)
+        cell.imageView.image = [images objectAtIndex:indexPath.row];
+    else 
+        cell.imageView.image = defaultImage;
+    
+    // title
     cell.textLabel.text = [item objectForKey:@"title"];
     
-    // дата публикации
+    // date
     NSDateFormatter *dateFormatterStr = [[NSDateFormatter new] autorelease];
     [dateFormatterStr setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     [dateFormatterStr setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss ZZZ"];
@@ -220,13 +258,13 @@
     NSDictionary* item = [rssItems objectAtIndex: indexPath.row];
     NSString *cellText = [item objectForKey:@"title"];
     
-    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+    CGSize constraintSize = CGSizeMake(214.0f, MAXFLOAT);
     
     CGSize labelSize = [cellText sizeWithFont:cellFont 
                             constrainedToSize:constraintSize 
                                 lineBreakMode:UILineBreakModeWordWrap];
     
-    return labelSize.height + 25.0f;
+    return MAX(labelSize.height + 25.0f, 64);
 }
 
 /*
@@ -281,8 +319,6 @@
      // ...
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
-    //NSDictionary* item = [rssItems objectAtIndex: indexPath.row];///2];
-    //cell.textLabel.text = [item objectForKey:@"title"];
 
      [detailViewController release];
 }
