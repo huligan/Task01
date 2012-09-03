@@ -29,7 +29,6 @@
     if (self) 
     {
         // Custom initialization
-        url = nil;
     }
     return self;
 }
@@ -45,12 +44,23 @@
         
         cellFont = [UIFont fontWithName:@"Helvetica-Bold" size:16.0f];
         [cellFont retain];
-        //rssItems = nil;
-        //rss = nil;
         
         rss = [[RSSLoader alloc] init];
         rss.delegate = self;
         [rss load:url];
+        
+        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.frame = CGRectMake(0.0f, 0.0f, 40.0f, 40.0f);
+        activityIndicator.hidesWhenStopped = YES;
+        activityIndicator.center = self.view.center;
+        
+        loadView = [[UIView alloc] init];
+        loadView.frame = self.view.frame;
+        [loadView setBackgroundColor:[UIColor colorWithRed:0.3f green:0.3f blue:0.3f alpha:0.6f]];
+        [loadView addSubview:activityIndicator];
+        [self.view addSubview:loadView];
+        
+        [self.view setUserInteractionEnabled:false];
     }
     return self;
 }
@@ -64,34 +74,13 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
-    if (!rss.loaded)
-    {
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    activityIndicator.frame = CGRectMake(0.0f, 0.0f, 40.0f, 40.0f);
-    activityIndicator.hidesWhenStopped = YES; // this is the default, but never hurts to be sure
-    activityIndicator.center = self.view.center;
-    //[self.view addSubview:activityIndicator];
-    
-    loadView = [[UIView alloc] init];
-    loadView.frame = self.view.frame;
-    [loadView setBackgroundColor:[UIColor colorWithRed:0.3f green:0.3f blue:0.3f alpha:0.6f]];
-    [loadView addSubview:activityIndicator];
-    [self.view addSubview:loadView];
-    }
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [activityIndicator startAnimating];
-    //if (rss == nil)
-    //{
-        //rss = [[RSSLoader alloc] init];
-       // rss.delegate = self;
-        //[rss load:url];
-    //}
-    
+    if (!rss.loaded)
+        [activityIndicator startAnimating];
 }
 
 #pragma mark -
@@ -109,10 +98,8 @@
             loadView.alpha = 0.0;
         } completion:^(BOOL finished){
             [loadView removeFromSuperview];
+            [self.view setUserInteractionEnabled:true];
         }];
-        
-        
-        //[loadView removeFromSuperview];
     }
 }
 
@@ -131,11 +118,19 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    
+}
+
+- (void) dealloc
+{
     [url release];
     [cellFont release];
     [activityIndicator release];
     [loadView release];
+    [rss release];
+    [rssItems release];
+    [cellFont release];
+    
+    [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -191,6 +186,7 @@
     NSDictionary* item = [rssItems objectAtIndex: indexPath.row];
     cell.textLabel.text = [item objectForKey:@"title"];
     
+    // дата публикации
     NSDateFormatter *dateFormatterStr = [[NSDateFormatter new] autorelease];
     [dateFormatterStr setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     [dateFormatterStr setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss ZZZ"];
@@ -213,11 +209,6 @@
     
     cell.textLabel.text = @"";
     
-    //UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    //[activity startAnimating];
-    //[cell setAccessoryView: activity];
-    //[activity release];
-    
     return cell;
 }
 
@@ -234,7 +225,6 @@
     CGSize labelSize = [cellText sizeWithFont:cellFont 
                             constrainedToSize:constraintSize 
                                 lineBreakMode:UILineBreakModeWordWrap];
-    
     
     return labelSize.height + 25.0f;
 }
